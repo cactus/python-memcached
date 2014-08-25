@@ -474,7 +474,7 @@ class Client(threading.local):
         should fail. Defaults to None for no delay.
         @rtype: int
         '''
-        return self._deletetouch(['DELETED', 'NOT_FOUND'], "delete", key, time)
+        return self._deletetouch(['DELETED'], "delete", key, time)
 
     def touch(self, key, time=0):
         '''Updates the expiration time of a key in memcache.
