@@ -49,7 +49,6 @@ from __future__ import print_function
 
 import binascii
 import os
-import pickle
 import re
 import socket
 import sys
@@ -84,6 +83,11 @@ try:
     _str_cls = basestring
 except NameError:
     _str_cls = str
+
+try:
+    import cPickle as pickle
+except NameError:
+    import pickle
 
 valid_key_chars_re = re.compile('[\x21-\x7e\x80-\xff]+$')
 
@@ -164,7 +168,7 @@ class Client(threading.local):
     class MemcachedStringEncodingError(Exception):
         pass
 
-    def __init__(self, servers, debug=0, pickleProtocol=0,
+    def __init__(self, servers, debug=0, pickleProtocol=pickle.HIGHEST_PROTOCOL,
                  pickler=pickle.Pickler, unpickler=pickle.Unpickler,
                  compressor=zlib.compress, decompressor=zlib.decompress,
                  pload=None, pid=None,
