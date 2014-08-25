@@ -483,8 +483,7 @@ class Client(threading.local):
             reply.
         @rtype: int
         '''
-        return self._deletetouch(['DELETED', 'NOT_FOUND'], "delete", key,
-                                 time, noreply)
+        return self._deletetouch(['DELETED'], "delete", key, time, noreply)
 
     def touch(self, key, time=0, noreply=False):
         '''Updates the expiration time of a key in memcache.
